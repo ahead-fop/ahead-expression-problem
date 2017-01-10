@@ -1,0 +1,4 @@
+class Neg implements Exp {
+   Exp x;
+   Neg( Exp x ) { this.x = x; }
+}

@@ -1,0 +1,147 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:m="http://schemas.microsoft.com/office/2004/12/omml" xmlns:v="urn:schemas-microsoft-com:vml" xmlns:o="urn:schemas-microsoft-com:office:office">
+
+<head>
+<meta http-equiv="Content-Language" content="en-us" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>The Expression Problem in FOP/AH</title>
+<style type="text/css">
+.style1 {
+	vertical-align: middle;
+}
+.style2 {
+	margin-left: 40px;
+}
+.style4 {
+	font-family: "Courier New", Courier, monospace;
+	margin-left: 40px;
+}
+.style6 {
+	text-align: center;
+}
+.style7 {
+	font-family: Arial, Helvetica, sans-serif;
+	background-color: #00FFFF;
+}
+.style8 {
+	color: #0000FF;
+	font-family: Arial, Helvetica, sans-serif;
+}
+.style9 {
+	font-family: Arial, Helvetica, sans-serif;
+}
+.style10 {
+	font-family: Arial, Helvetica, sans-serif;
+	background-color: #FFFF00;
+}
+.style11 {
+	font-family: Arial, Helvetica, sans-serif;
+	margin-left: 40px;
+}
+.style12 {
+	background-color: #FFFF00;
+}
+.style13 {
+	border-width: 0px;
+	vertical-align: middle;
+}
+.style14 {
+	font-family: Arial;
+}
+</style>
+</head>
+
+<body>
+
+<h1 class="style6"><span class="style7">The Expression Problem in FOSD</span></h1>
+<h2><span class="style10">Design Pages</span></h2>
+<p><span class="style9">The </span><span class="style8"><em>expression problem 
+(EP)</em></span><span class="style9"> is a well-known problem (<a href="http://portal.acm.org/citation.cfm?id=186680">Reynolds 
+1975</a>;
+<a href="http://www.cs.utexas.edu/users/wcook/papers/OOPvsADT/CookOOPvsADT90.pdf">
+Cook 1990</a>,
+<a href="http://citeseerx.ist.psu.edu/viewdoc/summary?doi=10.1.1.18.4525">
+Krishnamurthi, Felleisen, Friedman 1998</a>;
+<a href="http://www.daimi.au.dk/~madst/tool/papers/expression.txt">Wadler 1998</a>) 
+in programming languages for how to add new methods and data types in a type 
+safe manner.&nbsp; We view it as a fundamental problem of variability in 
+software product lines.&nbsp; Basically, an EP program creates a parse tree for 
+integer expressions; individual EPL programs differ on the operations that can 
+be performed on such trees (print or toString, eval), the kinds of expressions 
+(integer addition, negation), and the ability to test generated programs.</span></p>
+<p class="style9">These pages have been created to illustrate how the EP of 
+software design can be addressed easily in an FOSD context.&nbsp; We 
+present pages that show a 2D array and a 3D array for its design.&nbsp; The 
+axes are:</p>
+<ul>
+	<li class="style9">Method variability: programs can have methods to evaluate 
+	and/or prettyprint (toString) trees.</li>
+	<li class="style9">Type variability: programs can add, negate integers</li>
+	<li class="style9">Test variability: programs can have have elementary unit 
+	tests or not.</li>
+</ul>
+<p class="style9">You are presented with the following graphical icons; by 
+clicking them, you will see a 2D array or a plane of a 3D array:</p>
+<p class="style11">
+<img alt="" src="images/Expres1.gif" width="92" height="68" class="style1" /> 
+Shows a 2D array, which really is a contraction of a 3D array where the 
+backplane (test) is composed with the front-plane (no-test).</p>
+<p class="style11">
+<img alt="" src="images/Expres2.gif" width="100" height="76" class="style1" />Shows 
+the front-plane of a 3D array, where no test programs are included in an EPL 
+design.</p>
+<p class="style2">
+<img alt="" src="images/Expres3.gif" width="100" height="76" class="style1" /><span class="style9">Shows 
+the back-plane of a 3D array, where test programs to be included in an EPL 
+design are presented.</span></p>
+<p class="style9">By clicking these icons, a array will appear below (on the 
+same page), showing the contents of array elements.&nbsp; Each element may have 
+several entries.&nbsp; Clicking on an entry will show the AHEAD file that 
+implements that &quot;variability&quot;.</p>
+<p class="style9">You are now free to explore this design:&nbsp;
+<a href="EPL.htm">Click here to view these arrays</a>.</p>
+<h2><span class="style10">Code Synthesis</span></h2>
+<p class="style9">You can use
+<a href="http://www.cs.utexas.edu/users/schwartz/ATS.html">AHEAD tools (which 
+must be installed)</a> to synthesize an EPL.&nbsp; Declaratively specify a 
+program by selecting features from the 2D array using the guidsl tool:</p>
+<p class="style4"><strong>&gt; cd Eprob</strong><img alt="" src="images/layout.jpg" width="307" height="287" style="float: right" class="style1" /><strong><br />
+&gt; guidsl -m</strong></p>
+<p class="style4">&nbsp;</p>
+<p class="style11">Note: The implemented design assumes (requires) that there is 
+a test program to run afterwards.&nbsp; So really to build a 3D design would 
+require &quot;decomposing&quot; the 2D array into a front-plane, back-plane, and updating 
+the model.m file.&nbsp; I leave this as an exercise.</p>
+<p class="style9">Save your design in the file &quot;tryit.equations&quot;.&nbsp;
+<img alt="" src="images/saveas.jpg" width="281" height="263" class="style1" /></p>
+<p class="style9">Then run the batch file:</p>
+<p class="style4"><strong>&gt; build</strong></p>
+<p class="style9">Which will compose your selected features, translate the 
+generated Jak file into Java, compile the Java file, and will run it.</p>
+<h2 class="style9"><span class="style12">References and Other Work</span></h2>
+<p class="style9">We have shown how these ideas scale in FOSD.&nbsp; The 
+papers listed below show how SPLs the size of EPL (30-40 line programs) can 
+scale to (30K-40K line programs) by using array designs called Origami.&nbsp; 
+(That is a 1000-fold increase in size).&nbsp; For more information, check out:</p>
+<ul>
+	<li>
+	<p class="style9">
+	<a target="_blank" href="ftp://ftp.cs.utexas.edu/pub/predator/Origami.pdf">
+	Generating Product-Lines of Product-Families</a> <strong>ASE 2002</strong>.</p>
+	</li>
+	<li>
+	<p class="style9">
+	<a target="_blank" href="ftp://ftp.cs.utexas.edu/pub/predator/OrigamiMDSC.pdf">
+	Refinements and Multi-Dimensional Separation of Concerns</a>, <b>ACM SIGSOFT 
+	FSE 2003.</b></p>
+	</li>
+</ul>
+
+<h2 class="style14"><strong><span class="style12">Source Code</span></strong></h2>
+<p class="style9">You can download a zipfile with these web pages and AHEAD 
+source code by clicking this icon: <span class="style7">
+<a href="http://www.cs.utexas.edu/users/schwartz/ATS/EPL.zip"><img alt="" src="images/EPLdotZip.jpg" width="45" height="50" class="style13" /></a></span></p>
+
+</body>
+
+</html>
